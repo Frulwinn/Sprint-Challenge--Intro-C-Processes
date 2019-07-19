@@ -12,6 +12,14 @@
  * (You can type `make` in the `examples/` directory.) 
  * It should print `Testing: PASS`.
  */
+char *concat(const char *s1, const char *s2)
+{
+  char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
+  // in real code you would check for errors in malloc here
+  strcpy(result, s1);
+  strcat(result, s2);
+  return result;
+}
 
 int main(int argc, char **argv)
 {
@@ -38,7 +46,17 @@ int main(int argc, char **argv)
   struct stat buf;
 
     while ((entries = readdir(directory)) != NULL) {
-      char *file_name = entries->d_name;
+      char *file_name;
+
+      if (argv[1] != NULL)
+    {
+      file_name = concat(argv[1], entries->d_name);
+    } else{
+
+
+      file_name = entries->d_name;
+    }
+
       //gets file size using file name
       stat(file_name, &buf);
       //prints size and name of file within directory entry
