@@ -27,6 +27,7 @@ int main(int argc, char **argv)
 
   // Open directory
   DIR *directory = opendir(path);
+  //checks for errors
   if (directory == NULL) {
     fprintf(stderr, "Cannot open directory.\n");
     exit (1);
@@ -38,7 +39,9 @@ int main(int argc, char **argv)
 
     while ((entries = readdir(directory)) != NULL) {
       char *file_name = entries->d_name;
+      //gets file size using file name
       stat(file_name, &buf);
+      //prints size and name of file within directory entry
       printf("%10lld  %s\n", buf.st_size, file_name);
   }
 
