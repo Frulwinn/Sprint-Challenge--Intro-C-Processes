@@ -19,12 +19,12 @@ int main(int argc, char **argv)
   char *path;
   if (argc > 1) {
     path = argv[1];
-    fprintf(stderr, "Extra args. \n");
-    exit(0);
+    //fprintf(stderr, "Extra args. \n");
+ 
   } else {
-    path = ".";
+    path = "./";
   }
-
+  
   // Open directory
   DIR *directory = opendir(path);
   //checks for errors
